@@ -1,14 +1,11 @@
 import {placeData} from "../../data/placeData";
-import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from "react-router-dom";
 
 const PlaceInfo = (props) => {
-	const {defaultPlace} = props;
-	const {placeID} = useParams();
-	const id = defaultPlace ? defaultPlace : placeID ;
-	const place = placeData.find(place => place.id === id);
+	const {placeID} = props;
+	const place = placeData.find(place => place.id === placeID);
 	
 return (
 	<div className="px-1">

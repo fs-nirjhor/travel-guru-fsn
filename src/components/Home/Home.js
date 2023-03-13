@@ -1,21 +1,13 @@
 import { placeData } from "../../data/placeData";
-import Box from "@mui/material/Box";
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { NavLink, Outlet } from "react-router-dom";
+import PlaceInfo from "../PlaceInfo/PlaceInfo";
 const Home = () => {
+	const [placeID, setPlaceID] = useState("place-1");
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        width: "100vw",
-        backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('./images/Rectangle 1.png')",
-      }}
-      className="d-flex align-items-center"
-    >
       <Container maxWidth="lg">
         <Grid
           container
@@ -23,10 +15,10 @@ const Home = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item xs={5} className="text-white">
-            <Outlet />
+          <Grid item xs={12} md={5} className="text-white mb-5">
+            <PlaceInfo placeID = {placeID} />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={12} md={7}>
             <Grid
               container
               direction="row"
@@ -38,15 +30,8 @@ const Home = () => {
                   item 
                   xs={3}
                   key={place.id}
-                  as={NavLink}
-                  to={place.id === "place-1" ? "/" : place.id }
-                  className="rounded pe-1"
-                  style={({ isActive, isPending }) => {
-                    return {
-                      border: isActive ? "3px ridge goldenrod" : "",
-                    };
-                  }}
-                  end
+                  onClick = { () => setPlaceID(place.id) }
+                  className= {place.id === placeID ? "rounded pe-1 border border-2 border-warning" : "rounded pe-1"}
                 >
                   <ImageListItem key={place.photo}>
                     <img
@@ -63,7 +48,6 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
-    </Box>
   );
 };
 
