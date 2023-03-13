@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { NavLink, Outlet } from "react-router-dom";
-
 const Home = () => {
   return (
     <Box
