@@ -1,7 +1,10 @@
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
+import PlaceBooking from "./components/PlaceBooking/PlaceBooking";
+import HotelBooking from "./components/HotelBooking/HotelBooking";
 import { Routes, Route } from "react-router-dom";
-import Box from "@mui/material/Box";
+import {Box, Container} from "@mui/material";
+
 const App = () => {
 return (
 	<Box
@@ -13,9 +16,13 @@ return (
       }}
 	>
 	<Header/>
+   <Container maxWidth="lg" >
   	<Routes >
   	  <Route path="/" element={<Home/>} />
+  	  <Route path="/:placeID" element={<PlaceBooking/>}/>
+  	  <Route path="/:placeID/hotels" element={<HotelBooking/>}/>
   	</Routes>
+   </Container>
 	</Box>
 );
 };

@@ -2,17 +2,18 @@ import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 
-const OpenStreetMap = ({lat, long, name}) => {
+const OpenStreetMap = (props) => {
+	const {location, address} = props;
   return (
   	<div>
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={{height:"40vh", width:"60vw", margin: "auto"}}>
+    <MapContainer center={location} zoom={20} scrollWheelZoom={false} style={{height:"50vh", width:"100%", margin: "auto"}}>
   <TileLayer
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
   />
-  <Marker position={[51.505, -0.09]}>
+  <Marker position={location} >
     <Popup>
-      FSN
+      {address}
     </Popup>
   </Marker>
 </MapContainer>

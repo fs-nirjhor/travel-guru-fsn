@@ -17,10 +17,7 @@ export const hotelData = [
             point : 4.5,
             totalReviews:  19
         },
-        price: {
-            perNight: 44,
-            total: 167
-        }
+        price: 44
     },
     {
         id: 'hotel-sajek-2',
@@ -39,10 +36,7 @@ export const hotelData = [
             point : 4.8,
             totalReviews:  14
         },
-        price: {
-            perNight: 50,
-            total: 189
-        }
+        price: 55
     },
     {
         id: 'hotel-sajek-3',
@@ -61,10 +55,7 @@ export const hotelData = [
             point : 3.7,
             totalReviews:  23
         },
-        price: {
-            perNight: 28,
-            total: 99
-        }
+        price: 28
     },
     {
         id: 'hotel-sajek-4',
@@ -83,10 +74,7 @@ export const hotelData = [
             point : 4.9,
             totalReviews:  121
         },
-        price: {
-            perNight: 52,
-            total: 150
-        }
+        price: 52
     },
     {
         id: 'hotel-sreemongol-1',
@@ -105,10 +93,7 @@ export const hotelData = [
             point : 4.7,
             totalReviews:  75
         },
-        price: {
-            perNight: 63,
-            total: 124
-        }
+        price: 63
     },
     {
         id: 'hotel-sreemongol-2',
@@ -127,10 +112,7 @@ export const hotelData = [
             point : 4.4,
             totalReviews:  89
         },
-        price: {
-            perNight: 34,
-            total: 87
-        }
+        price: 34
     },
     {
         id: 'hotel-sreemongol-3',
@@ -149,10 +131,7 @@ export const hotelData = [
             point : 4.1,
             totalReviews:  45
         },
-        price: {
-            perNight: 36,
-            total: 89
-        }
+        price: 36
     },
     {
         id: 'hotel-sreemongol-4',
@@ -171,10 +150,7 @@ export const hotelData = [
             point : 4.0,
             totalReviews:  12
         },
-        price: {
-            perNight: 45,
-            total: 521
-        }
+        price: 45
     },
     {
         id: 'hotel-sunderbon-1',
@@ -193,10 +169,7 @@ export const hotelData = [
             point : 4.5,
             totalReviews:  19
         },
-        price: {
-            perNight: 44,
-            total: 167
-        }
+        price: 44
     },
     {
         id: 'hotel-sunderbon-2',
@@ -215,10 +188,7 @@ export const hotelData = [
             point : 4.8,
             totalReviews:  14
         },
-        price: {
-            perNight: 50,
-            total: 189
-        }
+        price: 50
     },
     {
         id: 'hotel-sunderbon-3',
@@ -237,10 +207,7 @@ export const hotelData = [
             point : 3.7,
             totalReviews:  23
         },
-        price: {
-            perNight: 28,
-            total: 99
-        }
+        price: 28
     },
     {
         id: 'hotel-sunderbon-4',
@@ -259,10 +226,7 @@ export const hotelData = [
             point : 4.9,
             totalReviews:  121
         },
-        price: {
-            perNight: 52,
-            total: 150
-        }
+        price: 52
     },
     {
         id: 'hotel-nijhumdwip-1',
@@ -281,10 +245,7 @@ export const hotelData = [
             point : 4.7,
             totalReviews:  75
         },
-        price: {
-            perNight: 63,
-            total: 124
-        }
+        price: 63
     },
     {
         id: 'hotel-nijhumdwip-2',
@@ -303,10 +264,7 @@ export const hotelData = [
             point : 4.4,
             totalReviews:  89
         },
-        price: {
-            perNight: 34,
-            total: 87
-        }
+        price: 34
     },
     {
         id: 'hotel-nijhumdwip-3',
@@ -325,10 +283,7 @@ export const hotelData = [
             point : 4.1,
             totalReviews:  45
         },
-        price: {
-            perNight: 36,
-            total: 89
-        }
+        price: 36
     },
     {
         id: 'hotel-nijhumdwip-4',
@@ -347,9 +302,6 @@ export const hotelData = [
             point : 4.0,
             totalReviews:  12
         },
-        price: {
-            perNight: 45,
-            total: 521
-        }
+        price: 45
     },
-]
+];

@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
@@ -53,47 +54,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
+  
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu className="header-menu" 
@@ -115,6 +88,9 @@ export default function PrimarySearchAppBar() {
       <MenuItem> <NavLink to="/destination">Destination</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/blog">Blog</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/contact">Contact</NavLink> </MenuItem>
+      <MenuItem> <NavLink to="/login">
+       <Button  variant="contained" color="warning">Login</Button> 
+      </NavLink> </MenuItem>
     </Menu>
   );
 
@@ -137,7 +113,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </Box>
           <Box
-            src = "./images/logo.png" 
+            src = "./images/Group 1330.png" 
             alt="logo"
             component="img"
             sx={{ display: { xs: 'none', sm: 'block' }, height: 40, }}
@@ -157,11 +133,13 @@ export default function PrimarySearchAppBar() {
             <NavLink to="/destination">Destination</NavLink>
             <NavLink to="/blog">Blog</NavLink>
             <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/login">
+             <Button  variant="contained" color="warning">Login</Button> 
+            </NavLink>
           </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
 }
