@@ -2,6 +2,7 @@ import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import PlaceBooking from "./components/PlaceBooking/PlaceBooking";
 import HotelBooking from "./components/HotelBooking/HotelBooking";
+import Signup from "./components/Signup/Signup";
 import { Routes, Route } from "react-router-dom";
 import {Box, Container} from "@mui/material";
 
@@ -21,6 +22,7 @@ return (
   	  <Route path="/" element={<Home/>} />
   	  <Route path="/:placeID" element={<PlaceBooking/>}/>
   	  <Route path="/:placeID/hotels" element={<HotelBooking/>}/>
+  	  <Route path="/login" element={<Signup/>}/>
   	</Routes>
    </Container>
 	</Box>
