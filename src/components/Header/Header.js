@@ -84,6 +84,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <MenuItem> <NavLink to="/">Home</NavLink > </MenuItem>
       <MenuItem> <NavLink to="/news">News</NavLink > </MenuItem>
       <MenuItem> <NavLink to="/destination">Destination</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/blog">Blog</NavLink> </MenuItem>
@@ -112,12 +113,14 @@ export default function PrimarySearchAppBar() {
               <MenuIcon />
             </IconButton>
           </Box>
+          <NavLink to="/">
           <Box
             src = "./images/Group 1330.png" 
             alt="logo"
             component="img"
             sx={{ display: { xs: 'none', sm: 'block' }, height: 40, }}
           />
+          </NavLink>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -129,6 +132,7 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex'} , justifyContent: 'space-evenly', alignItems: 'center', width: "100%"}} >
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/news">News</NavLink>
             <NavLink to="/destination">Destination</NavLink>
             <NavLink to="/blog">Blog</NavLink>

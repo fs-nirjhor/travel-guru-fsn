@@ -1,12 +1,13 @@
 import { placeData } from "../../data/placeData";
 import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
+import { ImageListItem, ImageListItemBar } from "@mui/material";
 import PlaceInfo from "../PlaceInfo/PlaceInfo";
+
+
 const Home = () => {
 	const [placeID, setPlaceID] = useState("place-1"); 
-	
+
   useEffect(() => {
     const interval = setInterval(() => {
       const currentPlaceIndex = placeData.findIndex(place => place.id === placeID);

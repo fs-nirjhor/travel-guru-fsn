@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import PlaceBooking from "./components/PlaceBooking/PlaceBooking";
 import HotelBooking from "./components/HotelBooking/HotelBooking";
 import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login";
 import { Routes, Route } from "react-router-dom";
 import {Box, Container} from "@mui/material";
 
@@ -17,12 +18,13 @@ return (
       }}
 	>
 	<Header/>
-   <Container maxWidth="lg" >
+   <Container >
   	<Routes >
   	  <Route path="/" element={<Home/>} />
   	  <Route path="/:placeID" element={<PlaceBooking/>}/>
   	  <Route path="/:placeID/hotels" element={<HotelBooking/>}/>
-  	  <Route path="/login" element={<Signup/>}/>
+  	  <Route path="/login" element={<Login/>}/>
+  	  <Route path="/signup" element={<Signup/>}/>
   	</Routes>
    </Container>
 	</Box>

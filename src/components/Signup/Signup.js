@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import {
   TextField,
@@ -10,12 +11,21 @@ import {
   Input,
   FormHelperText,
   Button, 
-  Typography
+  Typography, 
+  Container 
 } from "@mui/material";
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import OtherLogin from "../OtherLogin/OtherLogin";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import {auth} from "../../firebase.init";
+
 
 const Signup = () => {
+  const [ createUserWithEmailAndPassword, user, loading, error ] = useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile] = useUpdateProfile(auth);
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -23,24 +33,38 @@ const Signup = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  
+  const {register, handleSubmit, watch, formState: {errors} } = useForm();
+  
+  const onSubmit = async (data) => {
+  	const {email, password, firstName, lastName} = data ;
+  	const displayName = firstName + ' ' + lastName ;
+  	const success = await createUserWithEmailAndPassword(email, password);
+  	if (success) {
+  		updateProfile({displayName});
+  	}
+  };
+  
   return (
+  	<Container maxWidth="sm">
     <Box
       sx={{
         backgroundColor: "white",
         padding: 5,
-        margin: "auto",
         borderRadius: 2,
       }}
     >
     <Typography variant="h5" >Create An Account</Typography >
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)} >
         <TextField
           fullWidth
           type="text"
           label="First Name"
           variant="standard"
           placeholder="Your First Name"
-          margin="normal"
+          margin="normal" 
+          required 
+          {...register("firstName",{required: true})}
         />
         <TextField
           fullWidth
@@ -48,7 +72,9 @@ const Signup = () => {
           label="Last Name"
           variant="standard"
           placeholder="Your Last Name"
-          margin="normal"
+          margin="normal" 
+          required 
+           {...register("lastName",{required: true})}
         />
         <TextField
           fullWidth
@@ -56,11 +82,13 @@ const Signup = () => {
           label="Email"
           variant="standard"
           placeholder="Your Email Address"
-          margin="normal"
-          helperText="Incorrect Email."
+          margin="normal" 
+          required 
+           {...register("email",{required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,})}
+          helperText={ errors?.email ? "Please enter a valid email address" : ""}
         />
         <FormControl fullWidth variant="standard" margin="normal">
-          <InputLabel htmlFor="standard-adornment-password">
+          <InputLabel >
             Password
           </InputLabel>
           <Input
@@ -69,19 +97,20 @@ const Signup = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
-            }
+            } 
+            required 
+            {...register("password",{required: true, pattern: /^[a-zA-Z0-9]{6,16}$/,})}
           />
-          <FormHelperText>Incorrect Password</FormHelperText>
+          <FormHelperText className="text-danger">{ errors?.password ? "Password must contain at least 6 to 16 characters" : ""}</FormHelperText>
         </FormControl>
         <FormControl fullWidth variant="standard" margin="normal">
-          <InputLabel htmlFor="standard-adornment-password">
+          <InputLabel >
             Confirm Password
           </InputLabel>
           <Input
@@ -90,7 +119,6 @@ const Signup = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
-                  aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
@@ -98,15 +126,29 @@ const Signup = () => {
                 </IconButton>
               </InputAdornment>
             }
+            required 
+            {...register("confirmPassword",{required: true, validate: (value) => value === watch("password") || "Password not matched",})}
           />
-          <FormHelperText>Unmatched Password</FormHelperText>
+          <FormHelperText className="text-danger">{ errors?.confirmPassword ? errors?.confirmPassword?.message : ""}</FormHelperText>
         </FormControl>
-        <Button fullWidth variant="contained" color="warning" sx={{my: 2}}>Create An Account</Button>
+        <Box className="text-center my-2">
+        { error ? 
+        <Typography variant="subtitle2" className="text-danger">{ error.code } </Typography>
+        : user ? 
+        <Typography variant="subtitle2" className="text-success"> Account created for {user.user.displayName} </Typography> 
+        : loading ? 
+        <Typography variant="subtitle2" className="text-muted"> Loading... {<HourglassBottomIcon/>}</Typography>
+        : ""
+        }
+        </Box>
+        <Button type="submit" fullWidth variant="contained" color="warning" sx={{my: 2}}>Create An Account</Button>
       </form>
       <Typography variant="body1" align="center">Already have an account?  
-      <Button as={Link} to="/login" color="warning">Login</Button>
+      <Link as={Link} to="/login" color="warning" > Login</Link>
       </Typography>
+      <OtherLogin/>
     </Box>
+    </Container>
   );
 };
 
