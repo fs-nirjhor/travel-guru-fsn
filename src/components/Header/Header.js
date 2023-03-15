@@ -12,6 +12,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
+import Logout from "../Logout/Logout";
+import {auth} from "../../firebase.init";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,7 +56,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Header() {
+	const [user] = useAuthState(auth);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -89,9 +93,11 @@ export default function PrimarySearchAppBar() {
       <MenuItem> <NavLink to="/destination">Destination</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/blog">Blog</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/contact">Contact</NavLink> </MenuItem>
-      <MenuItem> <NavLink to="/login">
-       <Button  variant="contained" color="warning">Login</Button> 
-      </NavLink> </MenuItem>
+      <MenuItem > 
+      { user ? <Logout/> :
+       <Button variant="contained" color="warning" as={NavLink} to="/login" className="text-light text-center">Login</Button> 
+      }
+      </MenuItem>
     </Menu>
   );
 
@@ -137,9 +143,9 @@ export default function PrimarySearchAppBar() {
             <NavLink to="/destination">Destination</NavLink>
             <NavLink to="/blog">Blog</NavLink>
             <NavLink to="/contact">Contact</NavLink>
-            <NavLink to="/login">
-             <Button  variant="contained" color="warning">Login</Button> 
-            </NavLink>
+            { user ? <Logout/> : 
+             <Button variant="contained" color="warning" as={NavLink} to="/login">Login</Button> 
+            }
           </Box>
         </Toolbar>
       </AppBar>

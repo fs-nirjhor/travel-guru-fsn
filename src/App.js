@@ -4,10 +4,14 @@ import PlaceBooking from "./components/PlaceBooking/PlaceBooking";
 import HotelBooking from "./components/HotelBooking/HotelBooking";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { Routes, Route } from "react-router-dom";
 import {Box, Container} from "@mui/material";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "./firebase.init";
 
 const App = () => {
+	const [user] = useAuthState(auth);
 return (
 	<Box
 	sx={{
@@ -21,10 +25,12 @@ return (
    <Container >
   	<Routes >
   	  <Route path="/" element={<Home/>} />
-  	  <Route path="/:placeID" element={<PlaceBooking/>}/>
-  	  <Route path="/:placeID/hotels" element={<HotelBooking/>}/>
   	  <Route path="/login" element={<Login/>}/>
   	  <Route path="/signup" element={<Signup/>}/>
+  	  <Route path="/:placeID" element={<PlaceBooking/>}/>
+  	  <Route element={<PrivateRoute isValid={!!user}/>}>
+  	  <Route path="/:placeID/hotels" element={<HotelBooking/>}/>
+  	  </Route>
   	</Routes>
    </Container>
 	</Box>
