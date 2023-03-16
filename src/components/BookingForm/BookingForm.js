@@ -5,17 +5,21 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Box, Grid, Button, TextField } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function BookingForm() {
+	const navigate = useNavigate();
 	const {placeID} = useParams();
 	const [value, setValue] = React.useState(dayjs(''));
-	
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		navigate(`/${placeID}/hotels`);
+	};
   return (
   	<Box sx={{backgroundColor: 'white', margin: 2, padding: 2, borderRadius: 2}}>
-  	
-      <TextField label="Origin" variant="filled" className="w-100 my-2"/>
-      <TextField label="Destination" variant="filled" className="w-100 my-2"/>
+  	<form onSubmit={handleSubmit}>
+      <TextField label="Origin" variant="filled" className="w-100 my-2" required/>
+      <TextField label="Destination" variant="filled" className="w-100 my-2" required/>
   	
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer 
@@ -30,7 +34,8 @@ export default function BookingForm() {
           value={value}
           onChange={(newValue) => setValue(newValue)} 
           disablePast 
-          views={['year', 'month', 'day']}
+          views={['year', 'month', 'day']} 
+          required
           />
         </Grid>
         <Grid item xs={6}>
@@ -38,14 +43,14 @@ export default function BookingForm() {
           value={value}
           onChange={(newValue) => setValue(newValue)} 
           disablePast 
+          required 
           />
         </Grid>
       </Grid>
       </DemoContainer>
     </LocalizationProvider>
-    <Link to={`/${placeID}/hotels`} className="text-decoration-none">
-    <Button variant="contained" color="warning" className="w-100 my-3">Start Booking</Button>
-    </Link>
+    <Button type="submit" variant="contained" color="warning" className="w-100 my-3">Start Booking</Button>
+    </form>
   	</Box>
   );
 }

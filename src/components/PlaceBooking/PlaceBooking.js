@@ -9,7 +9,7 @@ const PlaceBooking = () => {
 return (
 		<Grid container alignItems="center">
 		   <Grid item xs={12} md={6} className="text-white px-2">
-		      <h1>{place.name}</h1>
+		      <h1 className="text-center">{place.name}</h1>
 		      <p>{place.description}</p>
 		   </Grid>
 		   <Grid item xs={12} md={6}>
