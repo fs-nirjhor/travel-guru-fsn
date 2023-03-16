@@ -11,7 +11,7 @@ const HotelBooking = () => {
 	const hotels = hotelData.filter(hotel => hotel.location === place.name);
 return (
 	<Grid container >
-	 <Grid item xs={12} md={7} className="pe-3 bg-light rounded">
+	 <Grid item xs={12} md={7} className="bg-white rounded">
 	 <Box sx={{ m:2 }}>
 	 	<Typography variant="subtitle1" color="text.secondary"> 252 Stays Apr 13-17 3 guests </Typography>
 	 <Typography variant="h4" className="fw-bold">Stay in {place.name}</Typography>

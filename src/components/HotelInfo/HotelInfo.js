@@ -30,6 +30,8 @@ export default function HotelInfo(props) {
             display: "flex",
             justifyContent: "space-between",
             color: "text.secondary",
+            fontSize: 'small',
+            textAlign: 'center',
             mb: 1,
           }}
         >
