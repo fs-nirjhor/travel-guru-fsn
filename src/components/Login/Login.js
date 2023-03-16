@@ -19,8 +19,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OtherLogin from "../OtherLogin/OtherLogin";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import {auth} from "../../firebase.init";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
 	const {register, handleSubmit} = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [ signInWithEmailAndPassword, user, loading, error ] = useSignInWithEmailAndPassword(auth);
@@ -29,9 +32,12 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
   	const {email, password} = data ;
-  	signInWithEmailAndPassword(email,password);
+  	const success = await signInWithEmailAndPassword(email,password);
+  	if (success) {
+  		navigate(location.state?.from);
+  	}
   };
   return (
   	<Container maxWidth="sm">

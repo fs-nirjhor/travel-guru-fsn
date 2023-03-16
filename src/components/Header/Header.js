@@ -94,8 +94,10 @@ export default function Header() {
       <MenuItem> <NavLink to="/blog">Blog</NavLink> </MenuItem>
       <MenuItem> <NavLink to="/contact">Contact</NavLink> </MenuItem>
       <MenuItem > 
-      { user ? <Logout/> :
-       <Button variant="contained" color="warning" as={NavLink} to="/login" className="text-light text-center">Login</Button> 
+      { user ? <Logout/> : 
+      <NavLink to="/login" >
+       <Button variant="contained" color="warning" className="text-light text-center">Login</Button> 
+      </NavLink>
       }
       </MenuItem>
     </Menu>
@@ -144,7 +146,9 @@ export default function Header() {
             <NavLink to="/blog">Blog</NavLink>
             <NavLink to="/contact">Contact</NavLink>
             { user ? <Logout/> : 
-             <Button variant="contained" color="warning" as={NavLink} to="/login">Login</Button> 
+            <NavLink to="/login">
+             <Button variant="contained" color="warning" >Login</Button> 
+            </NavLink>
             }
           </Box>
         </Toolbar>
