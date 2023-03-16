@@ -17,7 +17,7 @@ const Home = () => {
       setTimeout(() => {
         setPlaceID(nextPlaceIndex);
         setSlide(false);
-      }, 1200); 
+      }, 1300); 
     }, 4000); 
     return () => clearInterval(interval);
   }, [placeID]);

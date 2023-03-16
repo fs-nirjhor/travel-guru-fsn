@@ -3,7 +3,7 @@ import {placeData} from "../../data/placeData";
 import {hotelData} from "../../data/hotelData";
 import Map from "../Map/OpenStreetMap";
 import HotelInfo from "../HotelInfo/HotelInfo";
-import { Grid } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 
 const HotelBooking = () => {
 	const {placeID} = useParams();
@@ -11,7 +11,11 @@ const HotelBooking = () => {
 	const hotels = hotelData.filter(hotel => hotel.location === place.name);
 return (
 	<Grid container >
-	 <Grid item xs={12} md={7} className="pe-3">
+	 <Grid item xs={12} md={7} className="pe-3 bg-light">
+	 <Box sx={{ m:2 }}>
+	 	<Typography variant="subtitle1" color="text.secondary"> 252 Stays Apr 13-17 3 guests </Typography>
+	 <Typography variant="h4" className="fw-bold">Stay in {place.name}</Typography>
+	 </Box>
 		{
 			hotels.map(hotel => <HotelInfo hotel={hotel} key={hotel.id}/>)
 		}
