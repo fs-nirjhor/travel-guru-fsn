@@ -9,11 +9,9 @@ import { Routes, Route } from "react-router-dom";
 import {Box, Container} from "@mui/material";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "./firebase.init";
-import { useState } from "react";
 
 const App = () => {
 	const [user] = useAuthState(auth);
-	console.log(!!user);
 return (
 	<Box
 	sx={{
