@@ -28,14 +28,13 @@ const Home = () => {
         <PlaceInfo placeID={placeID} slide={slide} />
       </Grid>
       <Grid item xs={12} md={7}>
-        <Grid container direction="row" justifyContent="center" alignItems="center">
+        <Grid container direction="row" justifyContent="center" alignItems="center" >
           {placeData.map((place) => (
             <Grid
               item 
               xs={3}
               key={place.id}
-              onClick={() => setPlaceID(place.id)}
-              className={place.id === placeID ? "rounded pe-1 border border-2 border-warning" : "rounded pe-1"}
+              className="ps-3"
             >
               <ImageListItem key={place.photo}>
                 <img
@@ -43,6 +42,8 @@ const Home = () => {
                   srcSet={place.photo}
                   alt={place.id}
                   loading="lazy"
+                  onClick={() => setPlaceID(place.id)}
+              className={place.id === placeID ? "rounded border border-3 border-warning" : "rounded"}
                 />
                 <ImageListItemBar title={place.name} />
               </ImageListItem>
